@@ -1,0 +1,118 @@
+/* styles/globals.css */
+
+/* Reset some basic elements */
+body, h1, input, button {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Basic body styling */
+body {
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Chat container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    height: 90vh;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Chat header */
+.chat-header {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+/* Chat messages container */
+.chat-messages {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+/* Chat message */
+.chat-message {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-message.user {
+    align-items: flex-end;
+}
+
+.chat-message.assistant {
+    align-items: flex-start;
+}
+
+.chat-message-content {
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 75%;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.chat-message-content.user {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.chat-message-content.assistant {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+/* Chat input container */
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.chat-button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.chat-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
