@@ -1,0 +1,99 @@
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    background-color: #f8fafc; /* Light background for better contrast */
+    padding: 10px 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05); /* Soft shadow for elevation */
+}
+
+.chat-input {
+    flex: 1;
+    padding: 16px;
+    border-radius: 30px;
+    border: 1px solid #d1d5db;
+    margin-right: 10px;
+    font-size: 16px;
+    padding-left: 20px;
+    background-color: white;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.chat-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.3); /* Soft blue glow */
+    outline: none;
+}
+
+.chat-button {
+    padding: 12px 24px;
+    border-radius: 30px;
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.chat-button:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-3px); /* Slight lift */
+}
+
+.chat-button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.chat-message {
+    margin-bottom: 18px;
+    padding: 12px 18px;
+    border-radius: 15px;
+    background-color: #f3f4f6;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05); /* Soft shadow for chat bubbles */
+    transition: all 0.3s ease-in-out; /* Smooth transitions */
+}
+
+.chat-message span {
+    min-width: 40px; /* Set a fixed width */
+    min-height: 40px; /* Set a fixed height */
+    border-radius: 50%; /* Keep it circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    flex-shrink: 0; /* Prevent the circle from shrinking */
+}
+
+.chat-message.assistant {
+    background-color: #e0e7ff;
+}
+
+.chat-message-content {
+    font-size: 15px;
+    color: #111827;
+    line-height: 1.5; /* Improved readability */
+}
+
+/* Circle for the "A" and "Q" icons */
+.chat-message span {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Makes it a perfect circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.chat-message .bg-green-500 {
+    background-color: #34d399;
+}
+
+.chat-message .bg-gray-200 {
+    background-color: #e5e7eb;
+}
