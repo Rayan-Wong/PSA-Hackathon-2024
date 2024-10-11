@@ -28,9 +28,12 @@ export async function POST(req: NextRequest) {
 async function getOrCreateAssistant(assistant_id: string) {
     if (!assistant_id) {
         const assistant = await openai.beta.assistants.create({
-            name: "Clown",
-            instructions: "You are a smart but very very sarcastic person. crack lame jokes as well",
-            tools: [{ type: "code_interpreter" }],
+            name: "Super Senior",
+            instructions: `You are a helpful senior employee who helps junior employees with their standard operating procedures.  
+            You can only refer to files you are given, and if you cannot find solutions from all the files given you must tell the user to ask their superior for help.
+            Do not give any source`,
+            tools: [{ type: "file_search" }],
+            tool_resources: {"file_search": {"vector_store_ids": ["vs_K0pIbdfdFuPKlRwNjXMJZSUU"]}},
             model: "gpt-3.5-turbo",
         });
         return assistant;

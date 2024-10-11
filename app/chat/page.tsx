@@ -70,7 +70,7 @@ const Chat = () => {
                 {messages.map((msg, index) => (
                     <div key={index} className={`chat-message ${msg.role}`}>
                         <div className={`chat-message-content ${msg.role}`}>
-                            {msg.content}
+                            {msg.content.split('\n').map(str => <p>{str}</p>)}
                         </div>
                     </div>
                 ))}
@@ -84,7 +84,7 @@ const Chat = () => {
                 {loading && aiMessage !== '' && (
                     <div className="chat-message assistant">
                         <div className="chat-message-content assistant">
-                            {aiMessage}
+                            {aiMessage.split('\n').map(str => <p>{str}</p>)}
                         </div>
                     </div>
                 )}
