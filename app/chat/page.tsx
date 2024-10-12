@@ -104,7 +104,7 @@ const Chat = () => {
             <div ref={messageEndRef} />
         </div>
     
-        <div className="chat-input-container fixed bottom-0 left-0 w-full flex px-4 space-x-2 bg-white shadow-lg z-10 md:rounded-lg md:bottom-2 md:m-2">
+        <div className="chat-input-container fixed bottom-0 left-0 w-full flex px-4 space-x-2 bg-white text-black shadow-lg z-10 md:rounded-lg md:bottom-2 md:m-2">
             <textarea
                 type="text"
                 value={input}

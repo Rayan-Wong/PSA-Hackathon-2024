@@ -41,7 +41,7 @@ const LoginPage: React.FC = () => {
                 id="email"
                 type="email"
                 {...register("email", { required: "Email is required", pattern: { value: /^\S+@\S+$/i, message: "Invalid email format" } })}
-                className={`mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 ${errors.email ? 'border-red-500' : ''}`}
+                className={`mt-1 block w-full p-2 border text-black border-gray-300 rounded-md focus:ring focus:ring-blue-500 ${errors.email ? 'border-red-500' : ''}`}
               />
               {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
             </div>
@@ -51,7 +51,7 @@ const LoginPage: React.FC = () => {
                 id="password"
                 type="password"
                 {...register("password", { required: "Password is required", minLength: { value: 6, message: "Password must be at least 6 characters" } })}
-                className={`mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 ${errors.password ? 'border-red-500' : ''}`}
+                className={`mt-1 block w-full p-2 border text-black border-gray-300 rounded-md focus:ring focus:ring-blue-500 ${errors.password ? 'border-red-500' : ''}`}
               />
               {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
             </div>
