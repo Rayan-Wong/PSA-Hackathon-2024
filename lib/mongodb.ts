@@ -29,7 +29,7 @@ export async function connectMongo() {
     return cached.connection;  
 }
 
-export async function addUser(email: string, hashedPassword: string) {
+export async function addUser(email: string, hashedPassword: string, department: string, level: string) {
   try {
     await connectMongo();
     const existingUser = await User.findOne({ email });
@@ -41,10 +41,11 @@ export async function addUser(email: string, hashedPassword: string) {
     const newUser: UserInterface = {
       email,
       password: hashedPassword,
-      category: 'hi',
-      level: 1
+      department,
+      level
     };
     
+    console.log(newUser);
     await User.create(newUser);
     return 'success';
     

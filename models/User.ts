@@ -3,15 +3,15 @@ import { model, models, Schema } from 'mongoose';
 export interface UserInterface {  
     email: string;  
     password: string;  
-    category: string;  
-    level: number;
+    department: string;  
+    level: string;
 }  
 const UserSchema = new Schema<UserInterface>(  
     {  
         email: String,  
         password: String,  
-        category: String,  
-        level: Number
+        department: String,  
+        level: String,
     },  
     {  
         timestamps: true,  
