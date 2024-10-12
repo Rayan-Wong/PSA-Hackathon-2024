@@ -17,6 +17,8 @@ export async function POST(request: Request) {
     const result = await addUser(email, hashedPassword);
     if (result == 'success') {
         return NextResponse.json({ message: 'User registered successfully.' }, { status: 201 });
+    } else if (result == 'failed') {
+        return NextResponse.json({ message: 'Something went wrong.' }, { status: 500 });
     } else {
         return NextResponse.json({ message: 'User already exists' }, { status: 409 });
     }

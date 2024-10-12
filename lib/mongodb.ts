@@ -1,54 +1,73 @@
-// lib/mongodb.ts
-import { User } from '@/models/User';
-import { MongoClient } from 'mongodb';
-import { aborted } from 'node:util';
-
-const uri = process.env.MONGODB_URI as string;
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
-
-const client = new MongoClient(uri);
+import User, { UserInterface } from '@/models/User';
+import bcrypt from 'bcryptjs';
+import mongoose from 'mongoose';  
+import { redirect } from 'next/navigation';
+  
+const MONGO_URI = process.env.MONGO_URI;  
+const cached: { connection?: typeof mongoose; promise?: Promise<typeof mongoose> } = {};  
+export async function connectMongo() {  
+    console.log('connecting...');
+    if (!MONGO_URI) {  
+        throw new Error('Please define the MONGO_URI environment variable inside .env.local');  
+    } 
+    if (cached.connection) {  
+        return cached.connection;  
+    }
+    if (!cached.promise) {  
+        const opts = {  
+            bufferCommands: false,  
+        };
+        cached.promise = mongoose.connect(MONGO_URI, opts);  
+    }
+    try {  
+        cached.connection = await cached.promise;
+    } catch (e) {  
+        cached.promise = undefined;  
+        throw e;  
+    }  
+    console.log('connected!');
+    return cached.connection;  
+}
 
 export async function addUser(email: string, hashedPassword: string) {
   try {
-    await client.connect();
-
-    const database = client.db('code_sprint');
-    const users = database.collection('users');
-    const existingUser = await users.findOne({ email });
+    await connectMongo();
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       console.log(existingUser);
       return 'User already exists';
     }
 
-    const newUser: User = {
+    const newUser: UserInterface = {
       email,
       password: hashedPassword,
+      category: 'hi',
+      level: 1
     };
     
-    await users.insertOne(newUser);
-    return 'success'
+    await User.create(newUser);
+    return 'success';
     
   } catch {
-    // Ensures that the client will close when you finish/error
-    return 'failed'
-  } finally {
-    await client.close();
+    return 'failed';
   }
 }
 
-   // // Check if user already exists
-    // const existingUser = await db.collection('users').findOne({ email });
-    // if (existingUser) {
-    //   return NextResponse.json({ message: 'User already exists.' }, { status: 409 });
-    // }
-
-    // // Create the new user
-    // const newUser: User = {
-    //   email,
-    //   password: hashedPassword,
-    // };
-    
-    // await db.collection('users').insertOne(newUser);
+export async function loginUser(email: string, enteredPassword: string) {
+  try {
+    await connectMongo();
+    console.log("connected");
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      return {'status': 'failure', message: 'User does not exist'}
+    }
+    const passwordMatch = await bcrypt.compare(enteredPassword, existingUser.password);
+    if (!passwordMatch) {
+      return { status: 'failure', message: 'Wrong credentials'}
+    } else {
+      return {status: 'success', message: 'User logged in'}
+    }
+  } catch {
+    return {status: 'failure', message: 'Something went wrong. Please try again later.'}
+  }
+}

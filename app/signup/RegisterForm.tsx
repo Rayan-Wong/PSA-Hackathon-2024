@@ -5,7 +5,7 @@ const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const regexp = new RegExp('^[1-9]\d{0,2}$');
+//   const regexp = new RegExp('^[1-9]\d{0,2}$');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
