@@ -87,7 +87,7 @@ const LoginForm: React.FC = () => {
                 id="email"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
-                className={`mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 ${errors.email ? 'border-red-500' : ''}`}
+                className={`text-black mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 ${errors.email ? 'border-red-500' : ''}`}
               />
               {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
             </div>
@@ -98,7 +98,7 @@ const LoginForm: React.FC = () => {
                 type="password"
                 placeholder="•••••••••"
                 onChange={(e) => setPassword(e.target.value)}
-                className={`mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 ${errors.password ? 'border-red-500' : ''}`}
+                className={`text-black mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 ${errors.password ? 'border-red-500' : ''}`}
               />
               {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
             </div>
