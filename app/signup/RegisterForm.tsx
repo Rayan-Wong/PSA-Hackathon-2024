@@ -7,24 +7,36 @@ const RegisterForm: React.FC = () => {
   const [level, setLevel] = useState('');
   const [department, setDepartment] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 //   const regexp = new RegExp('^[1-9]\d{0,2}$');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
 
     if (email.length == 0) {
         setMessage("Email is required.")
-        return
+        return;
     // } else if (!regexp.test(email)) {
     //     console.log(regexp.test(email))
     //     setMessage("Invalid email format.")
     //     return
     } else if (password.length == 0) {
-        setMessage("Password is required.")
-        return
+        setMessage("Password is required.");
+        setLoading(false);
+        return;
     } else if (password.length < 6) {
-        setMessage("Password must be at least 6 characters")
+        setMessage("Password must be at least 6 characters");
+        setLoading(false);
+        return;
+    } else if (department.length == 0) {
+        setMessage("Please select a department.");
+        setLoading(false);
         return
+    } else if (level.length == 0) {
+        setMessage("Please select a level of seniority.");
+        setLoading(false);
+        return;
     }
 
     const response = await fetch('/api/register', {
@@ -38,6 +50,7 @@ const RegisterForm: React.FC = () => {
     const data = await response.json();
     setMessage(data.message);
     console.log(data);
+    setLoading(false);
   };
 
   return (
@@ -144,9 +157,9 @@ const RegisterForm: React.FC = () => {
           {message && <p>{message}</p>}
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 disabled:bg-slate-500 dark:focus:ring-blue-800"
           >
-            Submit
+            {loading ? 'Loading...' : 'Register'}
           </button>
         </div>
 
