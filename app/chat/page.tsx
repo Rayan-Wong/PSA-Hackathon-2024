@@ -98,7 +98,7 @@ const Chat = () => {
     
                 {loading && (
                     <div className="chat-message assistant">
-                        <span className="text-gray-600">Thinking...</span>
+                        <p className="text-gray-600">Thinking...</p>
                     </div>
                 )}
     
