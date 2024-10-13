@@ -89,7 +89,7 @@ const Chat = () => {
                             {(msg.role === 'assistant') && (
                                 <div className="chat-message assistant flex flex-col items-center md:flex-row md:items-center md:space-x-2">
                                     <span className="inline-flex justify-center items-center w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-200 text-gray-800 font-bold text-sm md:text-base mb-2 md:mb-0">A</span>
-                                    <p className="text-md text-gray-700 break-words">{msg.content}</p>
+                                    <p className="text-md text-gray-700 break-words" style={{whiteSpace: "pre-line"}}>{msg.content}</p>
                                 </div>
                             )}
                         </div>
